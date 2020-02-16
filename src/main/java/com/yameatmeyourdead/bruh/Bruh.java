@@ -24,12 +24,15 @@ import java.util.stream.Collectors;
 public class Bruh
 {
     private static final Logger LOGGER = LogManager.getLogger();
-
+    public static final String MOD_ID = "bruh";
+    public static Bruh instance;
+    
     public Bruh() 
     {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-
+        instance = this;
+        
         MinecraftForge.EVENT_BUS.register(this);
     }
 
