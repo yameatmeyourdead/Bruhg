@@ -1,5 +1,9 @@
 {
 	"item.bruh.example_item": "example item",
+	"item.bruh.obamium": "Obamium",
+	"item.bruh.cooked_obama": "Cooked Obama",
 	
-	"block.bruh.example_block": "example block"
+	"block.bruh.example_block": "example block",
+	
+	"itemGroup.bruhtab": "Bruh"
 }
