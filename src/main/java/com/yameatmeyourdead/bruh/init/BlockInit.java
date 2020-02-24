@@ -4,6 +4,7 @@ import com.yameatmeyourdead.bruh.Bruh;
 import com.yameatmeyourdead.bruh.Bruh.BruhItemGroup;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
@@ -18,17 +19,17 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = Bruh.MOD_ID, bus = Bus.MOD)
 public class BlockInit 
 {
-	public static final Block example_block = null;
+	public static final Block obamium_ore = null;
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event)
 	{
-		event.getRegistry().register(new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(5.0f, 30.0f).sound(SoundType.METAL)).setRegistryName("example_block"));
+		event.getRegistry().register(new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.25f,15f).sound(SoundType.STONE)).setRegistryName("obamium_ore"));
 	}
 	
 	@SubscribeEvent
 	public static void registerBlockItems(final RegistryEvent.Register<Item> event)
 	{
-		event.getRegistry().register(new BlockItem(example_block, new Item.Properties().maxStackSize(1).group(BruhItemGroup.instance)).setRegistryName("example_block"));
+		event.getRegistry().register(new BlockItem(obamium_ore, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_ore"));
 	}
 }

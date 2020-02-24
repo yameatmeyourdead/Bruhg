@@ -20,7 +20,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod("bruh")
 public class Bruh
 {
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "bruh";
     public static Bruh instance;
     
@@ -61,7 +61,7 @@ public class Bruh
     	@Override
     	public ItemStack createIcon()
     	{
-    		return new ItemStack(BlockInit.example_block);
+    		return new ItemStack(BlockInit.obamium_ore);
     	}
     }
 }
