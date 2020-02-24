@@ -1,5 +1,17 @@
 {
-	"item.bruh.example_item": "example item",
+	"item.bruh.obamium": "Obamium",
+	"item.bruh.obamium_ingot": "Obamium Ingot",
 	
-	"block.bruh.example_block": "example block"
+	"item.bruh.cooked_obama": "Cooked Obama",
+	"item.bruh.uncooked_obama": "Uncooked Obama",
+	
+	"item.bruh.obamium_sword": "Obamium Sword",
+	"item.bruh.obamium_pickaxe": "Obamium Pickaxe",
+	"item.bruh.obamium_shovel": "Obamium Shovel",
+	"item.bruh.obamium_axe": "Obamium Axe",
+	"item.bruh.obamium_hoe": "Obamium Hoe",
+	
+	"block.bruh.obamium_ore": "Obamium Ore",
+	
+	"itemGroup.bruhtab": "Bruh"
 }
