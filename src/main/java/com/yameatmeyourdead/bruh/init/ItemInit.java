@@ -6,9 +6,12 @@ import com.yameatmeyourdead.bruh.Bruh;
 import com.yameatmeyourdead.bruh.Bruh.BruhItemGroup;
 import com.yameatmeyourdead.bruh.objects.items.GunItem;
 
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.HoeItem;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
@@ -18,10 +21,13 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.LazyValue;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = Bruh.MOD_ID, bus = Bus.MOD)
@@ -46,29 +52,106 @@ public class ItemInit
 	//gun
 	public static final Item obamium_gun = null;
 	
+	//armor
+	public static final Item obamium_helmet = null;
+	public static final Item obamium_chestplate = null;
+	public static final Item obamium_leggings = null;
+	public static final Item obamium_boots = null;
+	
 	@SuppressWarnings("deprecation")
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> event)
 	{
+		IForgeRegistry<Item> Registry = event.getRegistry();
+		
 		//materials
-		event.getRegistry().register(new Item(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium"));
-		event.getRegistry().register(new Item(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_ingot"));
+		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium"));
+		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_ingot"));
 		
 		//food items
-		event.getRegistry().register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(2).effect(new EffectInstance(Effects.HUNGER, 6000, 2), 1f).setAlwaysEdible().build())).setRegistryName("uncooked_obama"));
-		event.getRegistry().register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(10).saturation(3.0f).effect(new EffectInstance(Effects.REGENERATION, 600, 5), 1f).effect(new EffectInstance(Effects.SATURATION, 40, 5), 1f).setAlwaysEdible().build())).setRegistryName("cooked_obama"));
+		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(2).effect(new EffectInstance(Effects.HUNGER, 6000, 2), 1f).setAlwaysEdible().build())).setRegistryName("uncooked_obama"));
+		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(10).saturation(3.0f).effect(new EffectInstance(Effects.REGENERATION, 600, 5), 1f).effect(new EffectInstance(Effects.SATURATION, 40, 5), 1f).setAlwaysEdible().build())).setRegistryName("cooked_obama"));
 		
 		//tools
-		event.getRegistry().register(new SwordItem(ModItemTier.OBAMIUM, 1, -2f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_sword"));
-		event.getRegistry().register(new PickaxeItem(ModItemTier.OBAMIUM, -6, -2.4f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_pickaxe"));
-		event.getRegistry().register(new ShovelItem(ModItemTier.OBAMIUM, -5, -2.4f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_shovel"));
-		event.getRegistry().register(new AxeItem(ModItemTier.OBAMIUM, 3f, -2.6f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_axe"));
-		event.getRegistry().register(new HoeItem(ModItemTier.OBAMIUM, 0, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_hoe"));
+		Registry.register(new SwordItem(ModItemTier.OBAMIUM, 1, -2f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_sword"));
+		Registry.register(new PickaxeItem(ModItemTier.OBAMIUM, -6, -2.4f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_pickaxe"));
+		Registry.register(new ShovelItem(ModItemTier.OBAMIUM, -5, -2.4f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_shovel"));
+		Registry.register(new AxeItem(ModItemTier.OBAMIUM, 3f, -2.6f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_axe"));
+		Registry.register(new HoeItem(ModItemTier.OBAMIUM, 0, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_hoe"));
 		//event.getRegistry().register(new BowItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_bow"));
 		
 		//gun
-		event.getRegistry().register(new GunItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_gun"));
+		Registry.register(new GunItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_gun"));
+	
+		//armor
+		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.HEAD, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_helmet"));
+		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.CHEST, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_chestplate"));
+		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.LEGS, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_leggings"));
+		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.FEET, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_boots"));
 	}
+	
+	//Ingredient.fromItems(ItemInit.obamium_ingot
+	
+	public enum ModArmorMaterial implements IArmorMaterial
+	{
+		OBAMIUM(Bruh.MOD_ID + "test", 25, new int[] {7,9,11,7}, 420, SoundEvents.field_226124_Y_, 6.9f, () -> {
+			return Ingredient.fromItems(ItemInit.obamium_ingot);});
+		
+		private static final int[] MAX_DAMAGE_ARRAY = new int[]{16,16,16,16};
+		private final String name;
+		private final int maxDamageFactor;
+		private final int[] damageReductionAmountArray;
+		private final int enchantability;
+		private final SoundEvent soundevent;
+		private final LazyValue<Ingredient> repairMaterial;
+		
+		private ModArmorMaterial(String nameIn, int maxDamageFactor, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent soundEventIn, float toughnessIn, Supplier<Ingredient> repairMaterialIn)
+		{
+			this.name = nameIn;
+			this.maxDamageFactor = maxDamageFactor;
+			this.damageReductionAmountArray = damageReductionAmountsIn;
+			this.enchantability = enchantabilityIn;
+			this.soundevent = soundEventIn;
+			this.repairMaterial = new LazyValue<>(repairMaterialIn);
+		}
+		
+		@Override
+		public int getDurability(EquipmentSlotType slotIn) {
+			return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
+		}
+
+		@Override
+		public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+			return 0;
+		}
+
+		@Override
+		public int getEnchantability() {
+			return 0;
+		}
+
+		@Override
+		public SoundEvent getSoundEvent() {
+			return null;
+		}
+
+		@Override
+		public Ingredient getRepairMaterial() {
+			return null;
+		}
+		
+		@Override
+		public String getName() {
+			return null;
+		}
+
+		@Override
+		public float getToughness() {
+			return 0;
+		}
+		
+	}
+	
 	
 	public enum ModItemTier implements IItemTier
 	{
