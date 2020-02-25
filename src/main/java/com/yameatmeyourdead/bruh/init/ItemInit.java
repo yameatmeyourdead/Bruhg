@@ -23,6 +23,8 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.LazyValue;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,11 +32,13 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
+
 @Mod.EventBusSubscriber(modid = Bruh.MOD_ID, bus = Bus.MOD)
 @ObjectHolder(Bruh.MOD_ID)
 public class ItemInit 
 {
 	//materials
+	public static final Item bruhmium = null;
 	public static final Item obamium = null;
 	public static final Item obamium_ingot = null;
 	
@@ -65,12 +69,16 @@ public class ItemInit
 		IForgeRegistry<Item> Registry = event.getRegistry();
 		
 		//materials
+		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("bruhmium"));
 		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium"));
 		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_ingot"));
 		
 		//food items
-		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(2).effect(new EffectInstance(Effects.HUNGER, 6000, 2), 1f).setAlwaysEdible().build())).setRegistryName("uncooked_obama"));
-		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(10).saturation(3.0f).effect(new EffectInstance(Effects.REGENERATION, 600, 5), 1f).effect(new EffectInstance(Effects.SATURATION, 40, 5), 1f).setAlwaysEdible().build())).setRegistryName("cooked_obama"));
+		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(2)
+				.effect(new EffectInstance(Effects.HUNGER, 6000, 2), 1f).setAlwaysEdible().build())).setRegistryName("uncooked_obama"));
+		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(10)
+				.saturation(3.0f).effect(new EffectInstance(Effects.REGENERATION, 600, 5), 1f).effect(new EffectInstance(Effects.SATURATION, 40, 5), 1f)
+				.setAlwaysEdible().build())).setRegistryName("cooked_obama"));
 		
 		//tools
 		Registry.register(new SwordItem(ModItemTier.OBAMIUM, 1, -2f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_sword"));
@@ -84,17 +92,19 @@ public class ItemInit
 		Registry.register(new GunItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_gun"));
 	
 		//armor
-		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.HEAD, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_helmet"));
-		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.CHEST, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_chestplate"));
-		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.LEGS, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_leggings"));
-		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.FEET, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_boots"));
+		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.HEAD, new Item.Properties()
+				.group(BruhItemGroup.instance)).setRegistryName("obamium_helmet"));
+		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.CHEST, new Item.Properties()
+				.group(BruhItemGroup.instance)).setRegistryName("obamium_chestplate"));
+		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.LEGS, new Item.Properties()
+				.group(BruhItemGroup.instance)).setRegistryName("obamium_leggings"));
+		Registry.register(new ArmorItem(ModArmorMaterial.OBAMIUM, EquipmentSlotType.FEET, new Item.Properties()
+				.group(BruhItemGroup.instance)).setRegistryName("obamium_boots"));
 	}
-	
-	//Ingredient.fromItems(ItemInit.obamium_ingot
 	
 	public enum ModArmorMaterial implements IArmorMaterial
 	{
-		OBAMIUM(Bruh.MOD_ID + "test", 25, new int[] {7,9,11,7}, 420, SoundEvents.field_226124_Y_, 6.9f, () -> {
+		OBAMIUM(Bruh.MOD_ID + ":obamium", 25, new int[] {7,9,11,7}, 420, SoundEvents.field_226124_Y_, 6.9f, () -> {
 			return Ingredient.fromItems(ItemInit.obamium_ingot);});
 		
 		private static final int[] MAX_DAMAGE_ARRAY = new int[]{16,16,16,16};
@@ -103,6 +113,7 @@ public class ItemInit
 		private final int[] damageReductionAmountArray;
 		private final int enchantability;
 		private final SoundEvent soundevent;
+		private final float toughness;
 		private final LazyValue<Ingredient> repairMaterial;
 		
 		private ModArmorMaterial(String nameIn, int maxDamageFactor, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent soundEventIn, float toughnessIn, Supplier<Ingredient> repairMaterialIn)
@@ -112,6 +123,7 @@ public class ItemInit
 			this.damageReductionAmountArray = damageReductionAmountsIn;
 			this.enchantability = enchantabilityIn;
 			this.soundevent = soundEventIn;
+			this.toughness = toughnessIn;
 			this.repairMaterial = new LazyValue<>(repairMaterialIn);
 		}
 		
@@ -122,34 +134,34 @@ public class ItemInit
 
 		@Override
 		public int getDamageReductionAmount(EquipmentSlotType slotIn) {
-			return 0;
+			return this.damageReductionAmountArray[slotIn.getIndex()];
 		}
 
 		@Override
 		public int getEnchantability() {
-			return 0;
+			return this.enchantability;
 		}
 
 		@Override
 		public SoundEvent getSoundEvent() {
-			return null;
+			return this.soundevent;
 		}
 
 		@Override
 		public Ingredient getRepairMaterial() {
-			return null;
+			return this.repairMaterial.getValue();
 		}
 		
+		@OnlyIn(Dist.CLIENT)
 		@Override
 		public String getName() {
-			return null;
+			return this.name;
 		}
 
 		@Override
 		public float getToughness() {
-			return 0;
+			return this.toughness;
 		}
-		
 	}
 	
 	
