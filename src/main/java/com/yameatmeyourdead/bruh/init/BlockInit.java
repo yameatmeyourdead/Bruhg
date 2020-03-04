@@ -30,10 +30,13 @@ public class BlockInit
 		IForgeRegistry<Block> Registry = event.getRegistry();
 		
 		//ores
-		Registry.register(new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.25f,15f).harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)).setRegistryName("obamium_ore"));
+		Registry.register(new Block(Block.Properties.create(Material.SAND).hardnessAndResistance(0.25f, 15.6f)
+				.harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)).setRegistryName("obamium_ore"));
 		
 		//blocks
-		Registry.register(new ObamiumBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5f, 25f).harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)).setRegistryName("block_of_obamium"));
+		Registry.register(
+				new ObamiumBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5f, 25f).harvestLevel(3)
+						.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)).setRegistryName("block_of_obamium"));
 	}
 	
 	@SubscribeEvent

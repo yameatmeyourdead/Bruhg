@@ -15,6 +15,7 @@ import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.crafting.Ingredient;
@@ -75,17 +76,30 @@ public class ItemInit
 		
 		//food items
 		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(2)
-				.effect(new EffectInstance(Effects.HUNGER, 6000, 2), 1f).setAlwaysEdible().build())).setRegistryName("uncooked_obama"));
-		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance).food(new Food.Builder().hunger(10)
-				.saturation(3.0f).effect(new EffectInstance(Effects.REGENERATION, 600, 5), 1f).effect(new EffectInstance(Effects.SATURATION, 40, 5), 1f)
-				.setAlwaysEdible().build())).setRegistryName("cooked_obama"));
+				.effect(new EffectInstance(Effects.HUNGER, 6000, 2), 1f).setAlwaysEdible().build()))
+						.setRegistryName("uncooked_obama"));
+		Registry.register(new Item(new Item.Properties().group(BruhItemGroup.instance)
+				.food(new Food.Builder().hunger(10).saturation(3.0f)
+						.effect(new EffectInstance(Effects.REGENERATION, 600, 5), 1f)
+						.effect(new EffectInstance(Effects.SATURATION, 40, 5), 1f).setAlwaysEdible().build()))
+								.setRegistryName("cooked_obama"));
 		
 		//tools
-		Registry.register(new SwordItem(ModItemTier.OBAMIUM, 1, -2f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_sword"));
-		Registry.register(new PickaxeItem(ModItemTier.OBAMIUM, -6, -2.4f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_pickaxe"));
-		Registry.register(new ShovelItem(ModItemTier.OBAMIUM, -5, -2.4f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_shovel"));
-		Registry.register(new AxeItem(ModItemTier.OBAMIUM, 3f, -2.6f, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_axe"));
-		Registry.register(new HoeItem(ModItemTier.OBAMIUM, 0, new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_hoe"));
+		Registry.register(
+				new SwordItem(ModItemTier.OBAMIUM, 1, -2f, new Item.Properties().group(BruhItemGroup.instance))
+						.setRegistryName("obamium_sword"));
+		Registry.register(
+				new PickaxeItem(ModItemTier.OBAMIUM, -6, -2.4f, new Item.Properties().group(BruhItemGroup.instance))
+						.setRegistryName("obamium_pickaxe"));
+		Registry.register(
+				new ShovelItem(ModItemTier.OBAMIUM, -5, -2.4f, new Item.Properties().group(BruhItemGroup.instance))
+						.setRegistryName("obamium_shovel"));
+		Registry.register(
+				new AxeItem(ModItemTier.OBAMIUM, 3f, -2.6f, new Item.Properties().group(BruhItemGroup.instance))
+						.setRegistryName("obamium_axe"));
+		Registry.register(new HoeItem(ModItemTier.OBAMIUM, 0, new Item.Properties().group(BruhItemGroup.instance))
+				.setRegistryName("obamium_hoe"));
+		Registry.register(new ShearsItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_shears"));
 		//event.getRegistry().register(new BowItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_bow"));
 		
 		//gun
@@ -104,10 +118,10 @@ public class ItemInit
 	
 	public enum ModArmorMaterial implements IArmorMaterial
 	{
-		OBAMIUM(Bruh.MOD_ID + ":obamium", 25, new int[] {7,9,11,7}, 420, SoundEvents.field_226124_Y_, 6.9f, () -> {
+		OBAMIUM(Bruh.MOD_ID + ":obamium", 25, new int[] {7,9,11,7}, 420, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 6.9f, () -> {
 			return Ingredient.fromItems(ItemInit.obamium_ingot);});
 		
-		private static final int[] MAX_DAMAGE_ARRAY = new int[]{16,16,16,16};
+		private static final int[] MAX_DAMAGE_ARRAY = new int[]{16,20,18,15};
 		private final String name;
 		private final int maxDamageFactor;
 		private final int[] damageReductionAmountArray;
@@ -167,7 +181,7 @@ public class ItemInit
 	
 	public enum ModItemTier implements IItemTier
 	{
-		OBAMIUM(4, 1750, 16.0f, 10.0f, 200, () -> {return Ingredient.fromItems(ItemInit.obamium);});
+		OBAMIUM(4, 1750, 20.0f, 10.0f, 200, () -> {return Ingredient.fromItems(ItemInit.obamium);});
 		
 		private final int harvestLevel;
 		private final int maxUses;

@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" 1 ",
+		" i ",
+		" 1 "
+	],
+	"key": {
+		"1": {
+			"item": "bruh:obamium_ingot"
+		},
+		"i": {
+			"item": "minecraft:diamond_shovel"
+		}
+	},
+	"result": {
+		"item": "bruh:obamium_shovel"
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"item": "bruh:obamium_ore"
+	},
+	"result": "bruh:obamium",
+	"experience": 5.0,
+	"cookingtime": 60
+}
