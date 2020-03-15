@@ -9,6 +9,7 @@ import com.yameatmeyourdead.bruh.objects.items.GunItem;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.IArmorMaterial;
@@ -100,7 +101,7 @@ public class ItemInit
 		Registry.register(new HoeItem(ModItemTier.OBAMIUM, 0, new Item.Properties().group(BruhItemGroup.instance))
 				.setRegistryName("obamium_hoe"));
 		Registry.register(new ShearsItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_shears"));
-		//event.getRegistry().register(new BowItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_bow"));
+		Registry.register(new BowItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_bow"));
 		
 		//gun
 		Registry.register(new GunItem(new Item.Properties().group(BruhItemGroup.instance)).setRegistryName("obamium_gun"));
