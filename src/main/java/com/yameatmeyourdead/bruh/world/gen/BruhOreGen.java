@@ -1,6 +1,6 @@
 package com.yameatmeyourdead.bruh.world.gen;
 
-import com.yameatmeyourdead.bruh.init.BlockInit;
+import com.yameatmeyourdead.bruh.init.BlockInitDeferred;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -19,7 +19,7 @@ public class BruhOreGen {
 			ConfiguredPlacement customConfig = Placement.COUNT_RANGE.func_227446_a_(new CountRangeConfig(3, 5, 5, 30));
 			biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE
 					.func_225566_b_(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE,
-							BlockInit.obamium_ore.getDefaultState(), 8)).func_227228_a_(customConfig));
+							BlockInitDeferred.OBAMIUM_ORE.get().getDefaultState(), 8)).func_227228_a_(customConfig));
 		}
 	}
 }
